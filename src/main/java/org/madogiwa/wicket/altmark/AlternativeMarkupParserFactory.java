@@ -23,6 +23,7 @@ import org.apache.wicket.markup.MarkupParser;
 import org.apache.wicket.markup.MarkupParserFactory;
 import org.apache.wicket.markup.MarkupResourceStream;
 import org.apache.wicket.markup.parser.XmlPullParser;
+import org.apache.wicket.markup.parser.filter.HtmlHandler;
 
 /**
  * @author Hidenori Sugiyama
@@ -63,7 +64,7 @@ public class AlternativeMarkupParserFactory extends MarkupParserFactory {
 	@Override
 	public MarkupParser newMarkupParser(MarkupResourceStream resource) {
 		MarkupParser markupParser = new MarkupParser(new XmlPullParser(), resource);
-		markupParser.appendMarkupFilter(new HtmlTagIdentifier(prefix, prefixRemoving));
+		markupParser.appendMarkupFilter(new HtmlTagIdentifier(prefix, prefixRemoving), HtmlHandler.class);
 		return markupParser;
 	}
 
